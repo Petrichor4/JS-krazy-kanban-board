@@ -1,0 +1,38 @@
+# Exported from Render on 2024-12-02T00:46:33Z
+databases:
+- name: Krazy Kanban Board
+  databaseName: kanban_db_asa6
+  user: kanban_db_asa6_user
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "16"
+services:
+- type: web
+  name: JS-krazy-kanban-board
+  runtime: node
+  repo: https://github.com/Petrichor4/JS-krazy-kanban-board
+  plan: free
+  envVars:
+  - key: PORT
+    sync: false
+  - key: JWT_SECRET_KEY
+    sync: false
+  - key: DB_URL
+    fromDatabase:
+      name: Krazy Kanban Board
+      property: connectionString
+  - key: DB_PASSWORD
+    fromDatabase:
+      name: Krazy Kanban Board
+      property: password
+  - key: DB_USER
+    sync: false
+  - key: DB_NAME
+    sync: false
+  region: oregon
+  buildCommand: npm run render-build
+  startCommand: ' npm run start && npm run seed'
+version: "1"
