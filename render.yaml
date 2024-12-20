@@ -34,6 +34,6 @@ services:
     sync: false
   region: oregon
   buildCommand: npm run render-build
-  startCommand: npm run start && npm run seed
-  postDeployCommand: node server\dist\seeds\index.js
+  startCommand: npm run start
+  postDeployCommand: npm run seed
 version: "1"
